@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ingresar Datos</title>
+    <link rel="stylesheet" type="text/css" href="./src/styles.css">
+</head>
+<body>
+    <h2>Ingresar Datos por Día</h2>
+    <section >
+    <div class="dia">
+        <label for="lunes">Lunes:</label>
+        <textarea class="styles-rows" id="lunes" rows="5" cols="50"  placeholder="Ejemplo: FISIOLOGÍA (1G7A),ODONTO-PINEDA S.,HISTOLOGÍA BUCODENTAL B31),09:00" ></textarea>
+    </div>
+    <div class="dia">
+        <label for="martes">Martes:</label>
+        <textarea class="styles-rows" id="martes" rows="5" cols="50" placeholder="Ejemplo: FISIOLOGÍA (1G7A),ODONTO-PINEDA S.,HISTOLOGÍA BUCODENTAL B31),09:00"></textarea>
+    </div>
+    <div class="dia">
+        <label for="miércoles">Miércoles:</label>
+        <textarea class="styles-rows" id="miércoles" rows="5" cols="50" placeholder="Ejemplo: FISIOLOGÍA (1G7A),ODONTO-PINEDA S.,HISTOLOGÍA BUCODENTAL B31),09:00"></textarea>
+    </div>
+    <div class="dia">
+        <label for="jueves">Jueves:</label>
+        <textarea class="styles-rows" id="jueves" rows="5" cols="50" placeholder="Ejemplo: FISIOLOGÍA (1G7A),ODONTO-PINEDA S.,HISTOLOGÍA BUCODENTAL B31),09:00"></textarea>
+    </div>
+    <div class="dia">
+        <label for="viernes">Viernes:</label>
+        <textarea class="styles-rows" id="viernes" rows="5" cols="50" placeholder="Ejemplo: FISIOLOGÍA (1G7A),ODONTO-PINEDA S.,HISTOLOGÍA BUCODENTAL B31),09:00"></textarea>
+    </div>
+    </section>
+
+
+<section>
+    <button onclick="saveData()">Guardar Datos</button>
+
+    <a href="./index.html"><button >regresar</button></a> 
+</section>
+
+
+
+
+    <script>
+        function saveData() {
+            const schedule = {
+                lunes: document.getElementById('lunes').value,
+                martes: document.getElementById('martes').value,
+                miércoles: document.getElementById('miércoles').value,
+                jueves: document.getElementById('jueves').value,
+                viernes: document.getElementById('viernes').value
+            };
+            localStorage.setItem('weeklySchedule', JSON.stringify(schedule));
+            alert('Datos guardados correctamente!');
+        }
+
+        // Cargar los datos guardados al cargar la página
+        window.onload = function() {
+            const schedule = JSON.parse(localStorage.getItem('weeklySchedule'));
+            if (schedule) {
+                document.getElementById('lunes').value = schedule.lunes || "";
+                document.getElementById('martes').value = schedule.martes || "";
+                document.getElementById('miércoles').value = schedule.miércoles || "";
+                document.getElementById('jueves').value = schedule.jueves || "";
+                document.getElementById('viernes').value = schedule.viernes || "";
+            }
+        };
+    </script>
+</body>
+</html>
